@@ -1,31 +1,54 @@
+import { Link, NavLink } from "react-router-dom";
+
 const NavBer = () => {
-
-    const navBerDainamic = <>
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li tabIndex={0}>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-
-    </>
+  const navBerDainamic = (
+    <div className="space-x-4 lg:flex lg:flex-row items-center">
+        <NavLink
+          to="/"
+          className={({ isActive, isPending })  =>
+            isPending ? " text-white font-bold" : isActive ? " text-[#EEFF25] font-bold" : ""
+          }
+        >
+          HOME
+        </NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
+          }
+        >
+          CONTACT US
+        </NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
+          }
+        >
+          DASHBOARD
+        </NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
+          }
+        >
+           OUR MENU
+        </NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
+          }
+        >
+           OUR SHOP
+        </NavLink>
+    </div>
+  );
   return (
     <>
       <div className="navbar fixed z-10 justify-between bg-opacity-20 text-white bg-slate-800">
-        <div className="navbar-start ju">
+        <div className="navbar-start px-8">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -47,25 +70,22 @@ const NavBer = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-            {navBerDainamic}
+              {navBerDainamic}
             </ul>
           </div>
           <div className="space-y-0">
-           <p className="font-bold">BISTRO BOSS</p>
-           <p className="tracking-widest">Restaurant</p>
+            <p className="font-bold">BISTRO BOSS</p>
+            <p className="tracking-widest">Restaurant</p>
           </div>
         </div>
-
 
         {/* mobile Responsive  */}
 
         <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-          {navBerDainamic}
-          </ul>
+          <ul className="menu menu-horizontal px-2">{navBerDainamic}</ul>
         </div>
-        <div className="">
-          <a className="btn">Button</a>
+        <div className="px-5">
+          <Link className="btn">Login</Link>
         </div>
       </div>
     </>
