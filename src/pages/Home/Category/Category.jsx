@@ -20,7 +20,7 @@ const Category = () => {
         ></SectionTitel>
       <Swiper
         slidesPerView={4}
-        spaceBetween={50}
+        spaceBetween={10}
         freeMode={true}
         pagination={{
           clickable: true,
@@ -28,26 +28,27 @@ const Category = () => {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-            <img src={slider1} alt="" />
-            <p className="text-2xl font-bold text-white drop-shadow-lg text-center -mt-12">Salads</p>
+        <SwiperSlide className="py-4">
+            <img className=" rounded-md" src={slider1} alt="" />
+            <p className="md:text-2xl font-bold text-white drop-shadow-lg text-center -mt-12 md:-ml-8 ">Salads</p>
         </SwiperSlide>
-        <SwiperSlide>
-            <img src={slider2} alt="" />
-            <p className="text-2xl font-bold text-white drop-shadow-lg text-center -mt-12">Salads</p>
+        <SwiperSlide className="py-4">
+            <img className=" rounded-md" src={slider2} alt="" />
+            <p className="md:text-2xl font-bold text-white drop-shadow-lg text-center -mt-12 md:-ml-8 ">SOUPS</p>
         </SwiperSlide>
-        <SwiperSlide>
-            <img src={slider3} alt="" />
-            <p className="text-2xl font-bold text-white drop-shadow-lg text-center -mt-12">Salads</p>
+        <SwiperSlide className="py-4">
+            <img className=" rounded-md" src={slider3} alt="" />
+            <p className="md:text-2xl font-bold text-white drop-shadow-lg text-center -mt-12 md:-ml-8 ">PIZZAS </p>
         </SwiperSlide>
-        <SwiperSlide>
-            <img src={slider4} alt="" />
-            <p className="text-2xl font-bold text-white drop-shadow-lg text-center -mt-12">Salads</p>
+        <SwiperSlide className="py-4">
+            <img className=" rounded-md" src={slider4} alt="" />
+            <p className="md:text-2xl font-bold text-white drop-shadow-lg text-center -mt-12 md:-ml-8 ">DESSERTS</p>
         </SwiperSlide>
-        <SwiperSlide>
-            <img src={slider5} alt="" />
-            <p className="text-2xl font-bold text-white drop-shadow-lg text-center -mt-12">Salads</p>
+        <SwiperSlide className="py-4">
+            <img className=" rounded-md" src={slider5} alt="" />
+            <p className="md:text-2xl font-bold text-white drop-shadow-lg text-center -mt-12 md:-ml-8 ">Salads</p>
         </SwiperSlide>
+    
       
       </Swiper>
     </section>

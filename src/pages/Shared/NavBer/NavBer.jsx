@@ -28,7 +28,7 @@ const NavBer = () => {
           DASHBOARD
         </NavLink>
         <NavLink
-          to="/"
+          to="/menu"
           className={({ isActive, isPending }) =>
             isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
           }

@@ -5,12 +5,14 @@ import './Featured.css'
 
 const Featured = () => {
     return (
-        <div className="featured-item bg-fixed">
-            <SectionTitel 
+        <div className="featured-item bg-fixed ">
+        
+            <SectionTitel
             heading={"FROM OUR MENU"}
             subHeading={"Check it out"}
-            ></SectionTitel>
-            <div className="flex justify-between items-center gap-14 text-white">
+             ></SectionTitel>
+     
+            <div className="flex justify-between items-center gap-14 text-white px-20 pb-20">
                 <img className="w-[50%]" src={img} alt="" />
                 <div>
                     <p>Aug 20, 2029</p>
