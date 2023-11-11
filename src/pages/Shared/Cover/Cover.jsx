@@ -1,7 +1,7 @@
 import React from "react";
 import { Parallax } from 'react-parallax';
 
-const Cover = ({img, title,  }) => {
+const Cover = ({img, title}) => {
   return (
     <Parallax
         blur={{ min: -15, max: 20 }}

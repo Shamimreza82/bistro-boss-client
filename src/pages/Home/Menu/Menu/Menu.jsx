@@ -34,10 +34,10 @@ const Menu = () => {
 
             <div className="max-w-7xl m-auto">
                 <MenuCategory items={offered}></MenuCategory>
-                <MenuCategory items={desserts} title={"Dessert"}coverImage={dessert}></MenuCategory>
-                <MenuCategory items={pizza} title={"Pizza"}coverImage={pizzaImg}></MenuCategory>
-                <MenuCategory items={salad} title={"Salads"}coverImage={saladImg}></MenuCategory>
-                <MenuCategory items={soup} title={"Soups"}coverImage={soupImg}></MenuCategory>
+                <MenuCategory items={desserts} title={"dessert"}coverImage={dessert}></MenuCategory>
+                <MenuCategory items={pizza} title={"pizza"}coverImage={pizzaImg}></MenuCategory>
+                <MenuCategory items={salad} title={"salad"}coverImage={saladImg}></MenuCategory>
+                <MenuCategory items={soup} title={"soup"}coverImage={soupImg}></MenuCategory>
             </div>
            
 

@@ -36,12 +36,12 @@ const NavBer = () => {
            OUR MENU
         </NavLink>
         <NavLink
-          to="/"
+          to="/order/salad"
           className={({ isActive, isPending }) =>
             isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
           }
         >
-           OUR SHOP
+           Order Food
         </NavLink>
     </div>
   );
