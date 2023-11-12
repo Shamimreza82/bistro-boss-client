@@ -85,7 +85,7 @@ const NavBer = () => {
           <ul className="menu menu-horizontal px-2">{navBerDainamic}</ul>
         </div>
         <div className="px-5">
-          <Link className="btn">Login</Link>
+          <Link to='/login' className="btn">Login</Link>
         </div>
       </div>
     </>
