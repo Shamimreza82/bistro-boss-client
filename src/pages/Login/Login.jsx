@@ -6,13 +6,16 @@ import {
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 
     const chaptchRef = useRef(null)
     console.log(chaptchRef);
     const [disebale, setDiseble] = useState(true)
+    const {login} = useContext(AuthContext)
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -23,12 +26,13 @@ const Login = () => {
     const from = e.target;
     const email = from.email.value;
     const password = from.password.value;
-    const user = {
-      email,
-      password,
-    };
 
-    console.log(user);
+    login(email, password)
+    .then(result => {
+        const user = result.user
+        console.log(user);
+    })
+
   };
 
   const validateChaptch = () => {
@@ -107,9 +111,9 @@ const Login = () => {
                 <p>
                   {" "}
                   New here?{" "}
-                  <span className="font-bold text-[#D1A054]">
+                  <Link to='/register' className="font-bold text-[#D1A054]">
                     create New Account
-                  </span>
+                  </Link>
                 </p>
               </div>
             </form>
