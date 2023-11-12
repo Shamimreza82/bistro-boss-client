@@ -1,6 +1,17 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const NavBer = () => {
+
+  const {user, logOut} = useContext(AuthContext)
+
+  const handelLogout = () => {
+    logOut()
+    .then(() => {})
+    .catch(error => console.error(error.message))
+  }
+
   const navBerDainamic = (
     <div className="space-x-4 lg:flex lg:flex-row items-center">
         <NavLink
@@ -42,6 +53,14 @@ const NavBer = () => {
           }
         >
            Order Food
+        </NavLink>
+        <NavLink
+          to="/secret"
+          className={({ isActive, isPending }) =>
+            isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
+          }
+        >
+           Secret
         </NavLink>
     </div>
   );
@@ -85,7 +104,9 @@ const NavBer = () => {
           <ul className="menu menu-horizontal px-2">{navBerDainamic}</ul>
         </div>
         <div className="px-5">
-          <Link to='/login' className="btn">Login</Link>
+          {
+            user ? <button onClick={handelLogout}  className="btn">Logout</button> : <Link to='/login' className="btn">Login</Link>
+          }
         </div>
       </div>
     </>

@@ -1,19 +1,45 @@
 import logoImg from "../../assets/others/authentication2.png";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const {createUser, updateUserProfile} = useContext(AuthContext)
 
-  const {register, handleSubmit, watch, formState: { errors },} = useForm();
+  const {register, handleSubmit, watch, reset,  formState: { errors }} = useForm();
 
   const onSubmit = data => {
+
         console.log(data);
+        createUser(data.email, data.password)
+        .then(result => {
+          const loggedUser = result.user
+          console.log(loggedUser);
+          updateUserProfile(data.name, data.PhotoURL)
+          .then(()=>{
+            console.log("user profile updated");
+            reset()
+            Swal.fire({
+              title: "Good job!",
+              text: "User Profile Update",
+              icon: "success"
+            });
+          })
+          .catch(error => console.error(error))
+        })
   }
 
   console.log(watch("example")) 
 
 
   return (
+    <>
+    <Helmet>
+      <title>Bistro Boss || Register</title>
+    </Helmet>
     <div className="login-img ">
       <div className="hero min-h-screen ">
         <div className="hero-content gap-24 shadow-2xl p-20 rounded-lg">
@@ -38,6 +64,19 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
+                  <span className="label-text">PhotoURL</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  {...register("PhotoURL", { required: true })}
+                  placeholder="PhotoURL"
+                  className="input input-bordered"
+                />
+                {errors.PhotoURL && <span className="text-red-600">PhotoURL is Required</span>}
+              </div>
+              <div className="form-control">
+                <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
@@ -56,11 +95,15 @@ const Register = () => {
                 <input
                   type="password"
                   name="password"
-                  {...register("password", {minLength: 6, maxLength: 20 })}
+                  {...register("password", {minLength: 6, maxLength: 20,
+                  pattern:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/})}
                   placeholder="password"
                   className="input input-bordered"
                 />
-                {errors.password?.type === "required" && (<p>password is required</p>)}
+                {errors.password?.type === "required" && (<p className="text-red-600">password is required</p>)}
+                {errors.password?.type === "minlength" && (<p className="text-red-600">password must be 6 character</p>)}
+                {errors.password?.type === "maxlength" && (<p className="text-red-600">password must be length then 20 character</p>)}
+                {errors.password?.type === "pattern" && (<p className="text-red-600">Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.</p>)}
 
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
@@ -89,7 +132,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div></>
   );
 };
 

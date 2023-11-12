@@ -6,16 +6,20 @@ import {
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
-    const chaptchRef = useRef(null)
-    console.log(chaptchRef);
-    const [disebale, setDiseble] = useState(true)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const [disabled, setDisable] = useState(true)
     const {login} = useContext(AuthContext)
+
+    let fromUse = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -31,22 +35,46 @@ const Login = () => {
     .then(result => {
         const user = result.user
         console.log(user);
+
+        Swal.fire({
+          title: "Login Successful",
+          showClass: {
+            popup: `
+              animate__animated
+              animate__fadeInUp
+              animate__faster
+            `
+          },
+          hideClass: {
+            popup: `
+              animate__animated
+              animate__fadeOutDown
+              animate__faster
+            `
+          }
+        });
+        navigate(fromUse, {replace: true})
     })
 
   };
 
-  const validateChaptch = () => {
-        const value = chaptchRef.current.value
+  const validateChaptch = (e) => {
+    e.preventDefault()
+        const value = e.target.value
         if(validateCaptcha(value)) {
-            setDiseble(false)    
+            setDisable(false)    
         } else {
-            setDiseble(true)
+            setDisable(true)
         }
        
   }
 
 
   return (
+    <>
+     <Helmet>
+      <title>Bistro Boss || Login</title>
+    </Helmet>
     <div className="login-img ">
       <div className="hero min-h-screen ">
         <div className="hero-content gap-24 shadow-2xl p-20 rounded-lg">
@@ -88,19 +116,18 @@ const Login = () => {
               <div>
                 <LoadCanvasTemplate />
                 <input
+                  onBlur={validateChaptch}
                   type="text"
                   name="captcha"
                   id=""
                   placeholder="type the text above"
                   className="py-2 px-2"
-                  ref={chaptchRef}
                 />
-                 <button onClick={validateChaptch} className="btn btn-outline btn-accent">Validate</button>
               </div>
              
               <div className="form-control mt-6">
                 <input
-                 disabled={disebale}
+                 disabled={disabled}
                   className="btn bg-[#D1A054] text-white hover:bg-slate-300"
                   type="submit"
                   value="login"
@@ -120,7 +147,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div></>
   );
 };
 
