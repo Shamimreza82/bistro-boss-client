@@ -1,67 +1,99 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import useCarts from "../../../Hooks/useCarts";
 
 const NavBer = () => {
-
-  const {user, logOut} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCarts()
 
   const handelLogout = () => {
     logOut()
-    .then(() => {})
-    .catch(error => console.error(error.message))
-  }
+      .then(() => {})
+      .catch((error) => console.error(error.message));
+  };
+   
+
 
   const navBerDainamic = (
     <div className="space-x-4 lg:flex lg:flex-row items-center">
-        <NavLink
-          to="/"
-          className={({ isActive, isPending })  =>
-            isPending ? " text-white font-bold" : isActive ? " text-[#EEFF25] font-bold" : ""
-          }
-        >
-          HOME
-        </NavLink>
-        <NavLink
-          to="/contact"
-          className={({ isActive, isPending }) =>
-            isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
-          }
-        >
-          CONTACT US
-        </NavLink>
-        <NavLink
-          to="/"
-          className={({ isActive, isPending }) =>
-            isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
-          }
-        >
-          DASHBOARD
-        </NavLink>
-        <NavLink
-          to="/menu"
-          className={({ isActive, isPending }) =>
-            isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
-          }
-        >
-           OUR MENU
-        </NavLink>
-        <NavLink
-          to="/order/salad"
-          className={({ isActive, isPending }) =>
-            isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
-          }
-        >
-           ORDER FOOD
-        </NavLink>
-        <NavLink
-          to="/secret"
-          className={({ isActive, isPending }) =>
-            isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
-          }
-        >
-           SECRET
-        </NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? " text-white font-bold"
+            : isActive
+            ? " text-[#EEFF25] font-bold"
+            : ""
+        }
+      >
+        HOME
+      </NavLink>
+      <NavLink
+        to="/contact"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? " text-white"
+            : isActive
+            ? " text-[#EEFF25] font-bold"
+            : ""
+        }
+      >
+        CONTACT US
+      </NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? " text-white"
+            : isActive
+            ? " text-[#EEFF25] font-bold"
+            : ""
+        }
+      >
+        DASHBOARD
+      </NavLink>
+      <NavLink
+        to="/menu"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? " text-white"
+            : isActive
+            ? " text-[#EEFF25] font-bold"
+            : ""
+        }
+      >
+        OUR MENU
+      </NavLink>
+      <NavLink
+        to="/order/salad"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? " text-white"
+            : isActive
+            ? " text-[#EEFF25] font-bold"
+            : ""
+        }
+      >
+        ORDER FOOD
+      </NavLink>
+      <NavLink
+        to="/secret"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? " text-white"
+            : isActive
+            ? " text-[#EEFF25] font-bold"
+            : ""
+        }
+      >
+        SECRET
+      </NavLink>
+      <Link to='/' className="btn">
+        <FaShoppingCart className="text-2xl"></FaShoppingCart>
+        <div className="badge badge-secondary">{cart.length}</div>
+      </Link>
     </div>
   );
   return (
@@ -104,9 +136,15 @@ const NavBer = () => {
           <ul className="menu menu-horizontal px-2">{navBerDainamic}</ul>
         </div>
         <div className="px-5">
-          {
-            user ? <button onClick={handelLogout}  className="btn">Logout</button> : <Link to='/login' className="btn">Login</Link>
-          }
+          {user ? (
+            <button onClick={handelLogout} className="btn">
+              Logout
+            </button>
+          ) : (
+            <Link to="/login" className="btn">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import React from 'react';
 import ContactHeader from './ContactHeader';
 import OurLocation from './OurLocation';
+import ContactFrom from './ContactFrom';
 
 
 const Contact = () => {
@@ -8,6 +9,7 @@ const Contact = () => {
         <div>
             <ContactHeader></ContactHeader>
             <OurLocation></OurLocation>
+            <ContactFrom></ContactFrom>
 
         </div>
     );
