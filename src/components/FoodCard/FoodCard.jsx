@@ -65,7 +65,7 @@ const FoodCard = ({item}) => {
   return (
     <div className="card  bg-base-100 shadow-xl">
       <figure>
-        <img
+        <img className="hover:scroll-auto"
           src={image}
           alt="Shoes"
         />

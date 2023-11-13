@@ -90,7 +90,7 @@ const NavBer = () => {
       >
         SECRET
       </NavLink>
-      <Link to='/' className="btn">
+      <Link to='/dashboard/cart' className="btn">
         <FaShoppingCart className="text-2xl"></FaShoppingCart>
         <div className="badge badge-secondary">{cart.length}</div>
       </Link>
