@@ -23,7 +23,7 @@ const NavBer = () => {
           HOME
         </NavLink>
         <NavLink
-          to="/"
+          to="/contact"
           className={({ isActive, isPending }) =>
             isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
           }
@@ -52,7 +52,7 @@ const NavBer = () => {
             isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
           }
         >
-           Order Food
+           ORDER FOOD
         </NavLink>
         <NavLink
           to="/secret"
@@ -60,7 +60,7 @@ const NavBer = () => {
             isPending ? " text-white" : isActive ? " text-[#EEFF25] font-bold" : ""
           }
         >
-           Secret
+           SECRET
         </NavLink>
     </div>
   );

@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Secret from "../pages/Shared/Secret/Secret";
 import PrivateRoute from "./PrivateRoute";
+import Contact from "../pages/Home/Contact/Contact";
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
                                 <Secret></Secret>
                          </PrivateRoute>
                
+            }, 
+            {
+                path: '/contact', 
+                element: <Contact></Contact>
             }
         ]
     }, 
