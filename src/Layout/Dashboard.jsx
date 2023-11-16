@@ -1,16 +1,10 @@
-import React from "react";
+
 import {
-  FaAd,
-  FaBiking,
   FaBook,
-  FaCalendar,
   FaEnvelope,
   FaHome,
   FaList,
   FaMendeley,
-  FaShoppingCart,
-  FaTimes,
-  FaUser,
   FaUsers,
   FaUtensils,
 } from "react-icons/fa";
@@ -53,7 +47,28 @@ const Dashboard = () => {
               </li>
             </>
           ) : (
-            <></>
+            <>
+                <li className="flex  items-center p-2  w-full">
+                <FaHome></FaHome>
+                <NavLink to="/dashboard/userHome">User Home</NavLink>
+              </li>
+              <li className="flex  items-center p-2  w-full">
+                <FaUtensils></FaUtensils>
+                <NavLink to="/dashboard/reservation">Reservation</NavLink>
+              </li>
+              <li className="flex  items-center p-2  w-full">
+                <FaList></FaList>
+                <NavLink to="/dashboard/cart">My Cart</NavLink>
+              </li>
+              <li className="flex  items-center p-2  w-full">
+                <FaBook></FaBook>
+                <NavLink to="/dashboard/review">Add a review</NavLink>
+              </li>
+              <li className="flex  items-center p-2  w-full">
+                <FaUsers></FaUsers>
+                <NavLink to="/dashboard/bookings">My Bookings</NavLink>
+              </li>
+          </>
           )}
 
           <div className="divider"></div>

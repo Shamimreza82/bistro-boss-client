@@ -11,6 +11,8 @@ import Contact from "../pages/Home/Contact/Contact";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AddItems from "../pages/Dashboard/AddItems/AddItems";
+import AdminRoute from "./adminRoute";
 
 
 const router = createBrowserRouter([
@@ -43,7 +45,6 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                                 <Secret></Secret>
                          </PrivateRoute>
-               
             }, 
             {
                 path: '/contact', 
@@ -66,6 +67,13 @@ const router = createBrowserRouter([
             {
                 path: 'users', 
                 element: <AllUsers></AllUsers>
+                             
+            }, 
+            {
+                path: 'addItems', 
+                element: <AddItems></AddItems>
+                             
+                       
             }
         ]
     }
