@@ -12,12 +12,13 @@ import Dashboard from "../Layout/Dashboard";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddItems from "../pages/Dashboard/AddItems/AddItems";
-import AdminRoute from "./adminRoute";
 import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
 import UpdateMenu from "../pages/Dashboard/UpdateMenu.jsx/UpdateMenu";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import PaymentHistory from "../pages/Dashboard/paymentHistory/paymentHistory";
+
 
 
 const router = createBrowserRouter([
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
                 element: <AllUsers></AllUsers>     
   
             }, 
+            {
+                path: 'paymentHistory', 
+                element: <PaymentHistory></PaymentHistory>
+            },
             {
                 path: 'adminHome', 
                 element: <AdminHome></AdminHome>

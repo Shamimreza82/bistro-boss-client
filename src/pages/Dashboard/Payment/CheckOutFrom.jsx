@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useCarts from "../../../Hooks/useCarts";
 import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckOutFrom = () => {
   const {user} = useAuth()
     const stripe = useStripe()
     const elements = useElements();
     const axiosSecure = useAxiosSecure()
-    const [cart] = useCarts()
+    const [cart, refetch] = useCarts()
     const [error, setError] = useState(' ')
     const [clientSecret, setClientSecret] = useState('')
     const [transaction, setTrangection] = useState('')
@@ -19,11 +20,13 @@ const CheckOutFrom = () => {
 
 
     useEffect(()=>{
-        axiosSecure.post('/create_payment_intent', {price: totalprice} )
-        .then( res => {
-            console.log(res.data.clientSecret);
-            setClientSecret(res.data.clientSecret)
-        })
+        if(totalprice > 0){
+          axiosSecure.post('/create_payment_intent', {price: totalprice} )
+          .then( res => {
+              console.log(res.data.clientSecret);
+              setClientSecret(res.data.clientSecret)
+          })
+        }
 
     },[axiosSecure, totalprice])
 
@@ -71,6 +74,30 @@ const CheckOutFrom = () => {
       if(paymentIntent.status === "succeeded")
       console.log("transaction ID", paymentIntent.id);
       setTrangection(paymentIntent.id)
+
+      /// Now save payment in the database
+
+      const payment =  {
+        email: user?.email, 
+        price: totalprice, 
+        transactionID: paymentIntent.id,
+        date: new Date(),    /// utc time jone convirt use monent jc for display
+        cartID: cart.map(item => item._id), 
+        menuItemID: cart.map(item => item.menuId), 
+        status: 'panding'
+      }
+
+     const result =  await axiosSecure.post('/payments', payment)
+     console.log("payment Save ", result.data);
+        refetch()
+        if(result.data?.paymentResult?.insertedId)
+        Swal.fire({
+          title: "Good job!",
+          text: "Payment SuccessFull",
+          icon: "success"
+        });
+
+
     }
 
 

@@ -10,9 +10,12 @@ import {
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
+import useCarts from "../Hooks/useCarts";
 
 const Dashboard = () => {
- 
+  
+  const [carts] = useCarts()
+
   
 
   /// TODO:
@@ -57,8 +60,12 @@ const Dashboard = () => {
                 <NavLink to="/dashboard/reservation">Reservation</NavLink>
               </li>
               <li className="flex  items-center p-2  w-full">
+                <FaUtensils></FaUtensils>
+                <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>
+              </li>
+              <li className="flex  items-center p-2  w-full">
                 <FaList></FaList>
-                <NavLink to="/dashboard/cart">My Cart</NavLink>
+                <NavLink to="/dashboard/cart">My Cart{carts.length}</NavLink>
               </li>
               <li className="flex  items-center p-2  w-full">
                 <FaBook></FaBook>
