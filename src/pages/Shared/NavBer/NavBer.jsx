@@ -3,18 +3,18 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
 import useCarts from "../../../Hooks/useCarts";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const NavBer = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cart] = useCarts()
+  const [isAdmin] = useAdmin()
+  const [cart] = useCarts();
 
   const handelLogout = () => {
     logOut()
       .then(() => {})
       .catch((error) => console.error(error.message));
   };
-   
-
 
   const navBerDainamic = (
     <div className="space-x-4 lg:flex lg:flex-row items-center">
@@ -78,8 +78,9 @@ const NavBer = () => {
       >
         ORDER FOOD
       </NavLink>
-      <NavLink
-        to="/secret"
+      {
+        user && isAdmin && <NavLink
+        to="/dashboard/adminHome"
         className={({ isActive, isPending }) =>
           isPending
             ? " text-white"
@@ -88,9 +89,24 @@ const NavBer = () => {
             : ""
         }
       >
-        SECRET
+        Dasboard
       </NavLink>
-      <Link to='/dashboard/cart' className="btn">
+      }
+      {
+        user && !isAdmin && <NavLink
+        to="/dashboard/userHome"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? " text-white"
+            : isActive
+            ? " text-[#EEFF25] font-bold"
+            : ""
+        }
+      >
+        Dashboard
+      </NavLink>
+      }
+      <Link to="/dashboard/cart" className="btn">
         <FaShoppingCart className="text-2xl"></FaShoppingCart>
         <div className="badge badge-secondary">{cart.length}</div>
       </Link>

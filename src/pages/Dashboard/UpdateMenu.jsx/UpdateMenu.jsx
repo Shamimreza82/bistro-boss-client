@@ -1,4 +1,3 @@
-import React from 'react';
 import SectionTitel from '../../../components/SectionTitel';
 import { useLoaderData } from 'react-router-dom';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';

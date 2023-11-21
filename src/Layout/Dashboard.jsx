@@ -9,15 +9,15 @@ import {
   FaUtensils,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
-import useCarts from "../Hooks/useCarts";
 import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-  const [cart] = useCarts();
+ 
   
 
   /// TODO:
   const [isAdmin] = useAdmin();
+  console.log(isAdmin);
 
   return (
     <div className="flex">

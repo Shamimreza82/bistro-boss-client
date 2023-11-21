@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaTrash, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
@@ -15,8 +14,9 @@ const AllUsers = () => {
     },
   });
 
-  const handelDeleteuser = (_id) => {
 
+
+  const handelDeleteuser = (_id) => {
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
